@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const bodyParser = require('body-parser');
-const Nudge = require('./nudge');  // Assuming Nudge model is in './nudge'
+const Nudge = require('./nudge');  
 
 const app = express();
 app.use(bodyParser.json());
@@ -78,7 +78,7 @@ app.post('/api/v3/app/events', upload.single('image'), async (req, res) => {
     try {
         const eventData = req.body;
         if (req.body.attendees && Array.isArray(req.body.attendees)) {
-            eventData.attendees = req.body.attendees.map(Number); // Convert to numbers if necessary
+            eventData.attendees = req.body.attendees.map(Number); 
         }
         if (req.file) {
             eventData.files = { image: req.file.path };
@@ -98,7 +98,6 @@ app.post('/api/v3/app/nudges', upload.single('image'), async (req, res) => {
     try {
         const { eventId, title, sendTime, description, invitationText, icon } = req.body;
 
-        // If an image is uploaded, use the file path
         const image = req.file ? req.file.path : null;
 
         // Create the nudge object
@@ -112,7 +111,6 @@ app.post('/api/v3/app/nudges', upload.single('image'), async (req, res) => {
             invitationText
         });
 
-        // Save the nudge to the database
         await nudge.save();
         res.status(201).send({ id: nudge._id });
     } catch (err) {
