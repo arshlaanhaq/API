@@ -11,8 +11,8 @@ This API allows users to create, manage, and trigger **nudges** for different ev
 
 ## 🛠️ Tech Stack
 - **Backend:** Node.js, Express.js  
-- **Database:** MongoDB (or as per your setup)  
-- **Authentication:** JWT (if implemented)  
+- **Database:** MongoDB 
+
 
 ## ⚙️ Installation
 
